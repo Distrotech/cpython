@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#Ensure python is built
+touch ../Include/Python-ast.h ../Python/Python-ast.c
