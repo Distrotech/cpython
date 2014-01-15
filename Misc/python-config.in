@@ -37,8 +37,8 @@ for opt in opt_flags:
         print sysconfig.EXEC_PREFIX
 
     elif opt in ('--includes', '--cflags'):
-        flags = ['-I' + sysconfig.get_python_inc(),
-                 '-I' + sysconfig.get_python_inc(plat_specific=True)]
+        flags = ['-I=' + sysconfig.get_python_inc(),
+                 '-I=' + sysconfig.get_python_inc(plat_specific=True)]
         if opt == '--cflags':
             flags.extend(getvar('CFLAGS').split())
         print ' '.join(flags)
@@ -50,7 +50,7 @@ for opt in opt_flags:
         # shared library in prefix/lib/.
         if opt == '--ldflags':
             if not getvar('Py_ENABLE_SHARED'):
-                libs.insert(0, '-L' + getvar('LIBPL'))
+                libs.insert(0, '-L=' + getvar('LIBPL'))
             if not getvar('PYTHONFRAMEWORK'):
                 libs.extend(getvar('LINKFORSHARED').split())
         print ' '.join(libs)
