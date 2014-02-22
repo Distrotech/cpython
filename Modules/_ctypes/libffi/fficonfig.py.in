@@ -27,6 +27,7 @@ ffi_platforms = {
     'PA': ['src/pa/linux.S', 'src/pa/ffi.c'],
     'PA_LINUX': ['src/pa/linux.S', 'src/pa/ffi.c'],
     'PA_HPUX': ['src/pa/hpux32.S', 'src/pa/ffi.c'],
+    'AARCH64': ['src/aarch64/ffi.c', 'src/aarch64/sysv.S'],
 }
 
 ffi_sources += ffi_platforms['@TARGET@']
