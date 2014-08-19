@@ -506,6 +506,7 @@ class PyBuildExt(build_ext):
                 add_dir_to_list(inc_dirs, d)
             for d in (
                 '/lib64', '/usr/lib64',
+                '/libx32', '/usr/libx32',
                 '/lib', '/usr/lib',
                 ):
                 add_dir_to_list(lib_dirs, d)
@@ -1029,6 +1030,7 @@ class PyBuildExt(build_ext):
                 # check lib directories parallel to the location of the header
                 db_dirs_to_check = [
                     db_incdir.replace("include", 'lib64'),
+                    db_incdir.replace("include", 'libx32'),
                     db_incdir.replace("include", 'lib'),
                 ]
 
@@ -1143,6 +1145,8 @@ class PyBuildExt(build_ext):
         if sqlite_incdir:
             sqlite_dirs_to_check = [
                 os.path.join(sqlite_incdir, '..', 'lib64'),
+                os.path.join(sqlite_incdir, '..', 'lib'),
+                os.path.join(sqlite_incdir, '..', 'libx32'),
                 os.path.join(sqlite_incdir, '..', 'lib'),
                 os.path.join(sqlite_incdir, '..', '..', 'lib64'),
                 os.path.join(sqlite_incdir, '..', '..', 'lib'),
@@ -1914,6 +1918,7 @@ class PyBuildExt(build_ext):
         elif os.path.exists('/usr/X11R6/include'):
             include_dirs.append('/usr/X11R6/include')
             added_lib_dirs.append('/usr/X11R6/lib64')
+            added_lib_dirs.append('/usr/X11R6/libx32')
             added_lib_dirs.append('/usr/X11R6/lib')
         elif os.path.exists('/usr/X11R5/include'):
             include_dirs.append('/usr/X11R5/include')
